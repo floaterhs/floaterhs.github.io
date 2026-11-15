@@ -38,7 +38,7 @@ npm run preview
 | 技能栏目 | `site/docs/skills/` |
 | 网站标题、导航、侧栏、搜索 | `site/.vitepress/config.ts` |
 | 自定义主题与样式 | `site/.vitepress/theme/` |
-| 首页头像 | `site/public/avatar.png` |
+| 首页头像 | `site/public/avatar.svg` |
 
 现有栏目尚未发布文章。添加真实内容后，请同步修改对应栏目中的空状态说明。
 

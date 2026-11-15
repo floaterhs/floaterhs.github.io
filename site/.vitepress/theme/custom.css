@@ -55,8 +55,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--vp-c-brand-1); 
 .VPHome { margin-bottom: 0 !important; }
 .floater-home { color: var(--vp-c-text-1); }
 .home-intro, .explore-section, .home-footer { width: calc(100% - 96px); max-width: var(--page-width); margin-inline: auto; }
-.home-intro { padding-top: 98px; }
-.intro-main { display: grid; grid-template-columns: 1.2fr 1fr; gap: 68px; align-items: end; padding-bottom: 85px; }
+.home-intro { position: relative; display: flex; align-items: center; min-height: calc(100vh - var(--vp-nav-height) - var(--vp-layout-top-height, 0px)); min-height: calc(100svh - var(--vp-nav-height) - var(--vp-layout-top-height, 0px)); padding-block: 64px 104px; }
+.intro-main { display: grid; grid-template-columns: 1.2fr 1fr; gap: 68px; align-items: center; width: 100%; }
 .intro-main h1 { font-size: clamp(48px, 6.2vw, 86px); line-height: 1.35; font-weight: 500; letter-spacing: -.065em; margin: 0; }
 .intro-main h1 span { display: block; }
 .intro-main h1 span + span { margin-top: 2px; }
@@ -74,24 +74,28 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--vp-c-brand-1); 
 .primary-link:active { transform: translateY(0); }
 .github-link { font-size: 14px; color: var(--vp-c-text-2); transition: color .2s; }
 .github-link:hover { color: var(--vp-c-brand-1); }
-.intro-bottom { display: flex; justify-content: space-between; gap: 24px; padding: 18px 0 32px; color: var(--vp-c-text-2); font-size: 13px; }
-.intro-bottom a:hover { color: var(--vp-c-brand-1); }
-.intro-bottom a span { display: inline-block; margin-left: 18px; }
-.explore-section { padding: 48px 44px 30px; background: var(--home-field); border-radius: 10px; scroll-margin-top: 86px; }
-.explore-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 25px; }
+.intro-scroll { position: absolute; bottom: 32px; left: 0; display: inline-flex; gap: 14px; align-items: center; min-height: 44px; color: var(--vp-c-text-2); font-size: 14px; }
+.intro-scroll svg { width: 18px; height: 18px; transition: transform .2s; }
+.intro-scroll:hover { color: var(--vp-c-brand-1); }
+.intro-scroll:hover svg { transform: translateY(4px); }
+.explore-section { padding: 56px 44px 40px; background: var(--home-field); border-radius: 10px; scroll-margin-top: var(--vp-nav-height); }
+.explore-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 36px; }
 .explore-heading h2 { margin: 0 0 12px; font-size: 27px; line-height: 1.5; letter-spacing: -.6px; font-weight: 550; }
 .explore-heading p { margin: 0; font-size: 14px; color: var(--vp-c-text-2); line-height: 1.7; }
 .topic-filters { display: flex; padding: 4px; gap: 2px; background: var(--vp-c-bg); border-radius: 7px; flex-shrink: 0; }
-.topic-filters button { color: var(--vp-c-text-2); font-size: 13px; padding: 7px 15px; border-radius: 4px; line-height: 1.6; transition: background .2s, color .2s; cursor: pointer; }
+.topic-filters button { color: var(--vp-c-text-2); font-size: 13px; min-height: 40px; padding: 7px 15px; border-radius: 4px; line-height: 1.6; transition: background .2s, color .2s; cursor: pointer; }
 .topic-filters button.active { background: var(--vp-c-brand-soft); color: var(--vp-c-brand-1); }
 .topic-filters button:hover { color: var(--vp-c-brand-1); }
-.topic-row { display: grid; grid-template-columns: 1fr 1.2fr 50px 22px; gap: 24px; align-items: center; min-height: 88px; border-radius: 6px; padding: 14px 14px; margin-inline: -14px; transition: background .2s, transform .2s; }
-.topic-row:hover { background: var(--vp-c-bg); transform: translateX(4px); }
-.topic-title { font-size: 20px; font-weight: 500; display: flex; align-items: center; gap: 16px; }
+.topic-list { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+.topic-row { position: relative; grid-column: span 2; display: flex; flex-direction: column; align-items: stretch; min-height: 220px; border-radius: 8px; padding: 28px; background: var(--vp-c-bg); transition: background .2s, transform .2s; }
+.topic-list[data-filter="全部"] .topic-row:nth-child(-n+2), .topic-list[data-filter="个人"] .topic-row { grid-column: span 3; }
+.topic-row:hover { background: var(--vp-c-brand-soft); transform: translateY(-4px); }
+.topic-row:active { transform: translateY(-1px); }
+.topic-title { font-size: 22px; font-weight: 500; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; line-height: 1.5; }
 .topic-en { font-size: 13px; color: var(--vp-c-text-2); font-weight: 400; }
-.topic-description { font-size: 14px; color: var(--vp-c-text-2); line-height: 1.8; }
-.topic-group { font-size: 12px; color: var(--vp-c-text-2); }
-.topic-arrow { width: 20px; height: 20px; color: var(--vp-c-text-2); transition: transform .2s; }
+.topic-description { margin-top: 16px; font-size: 16px; color: var(--vp-c-text-2); line-height: 1.8; }
+.topic-group { margin-top: auto; padding-top: 28px; font-size: 13px; color: var(--vp-c-text-2); }
+.topic-arrow { position: absolute; bottom: 28px; right: 28px; width: 20px; height: 20px; color: var(--vp-c-text-2); transition: transform .2s; }
 .topic-row:hover .topic-arrow { color: var(--vp-c-brand-1); transform: translateX(3px); }
 .collection-note { font-size: 13px; line-height: 1.7; margin: 22px 0 0; color: var(--vp-c-text-2); }
 .home-footer { padding-block: 55px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -132,15 +136,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--vp-c-brand-1); 
   .intro-actions { gap: 18px; }
   .github-link { font-size: 13px; }
   .explore-section { padding-inline: 32px; }
-  .topic-row { gap: 18px; grid-template-columns: 1fr 1.2fr 22px; }
-  .topic-title { display: block; }
-  .topic-en { display: block; margin-top: 5px; }
-  .topic-group { display: none; }
+  .topic-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .topic-row, .topic-list[data-filter="全部"] .topic-row:nth-child(-n+2), .topic-list[data-filter="个人"] .topic-row { grid-column: span 1; }
+  .topic-list .topic-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 @media (max-width: 767px) {
   .home-intro, .explore-section, .home-footer { width: calc(100% - 40px); }
-  .home-intro { padding-top: 48px; }
-  .intro-main { display: block; padding-bottom: 32px; }
+  .home-intro { padding-block: 40px 100px; }
+  .intro-main { display: block; }
   .intro-main h1 { font-size: clamp(42px, 9vw, 66px); line-height: 1.38; letter-spacing: -.05em; }
   .intro-details { margin-top: 30px; }
   .profile-identity { margin-bottom: 18px; gap: 14px; }
@@ -149,18 +152,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--vp-c-brand-1); 
   .intro-description { font-size: 15px; }
   .intro-actions { margin-top: 22px; gap: 20px; flex-wrap: wrap; }
   .primary-link { font-size: 14px; gap: 26px; padding: 12px 17px; }
-  .intro-bottom { padding: 10px 0 24px; font-size: 11px; gap: 12px; }
-  .intro-bottom a span { margin-left: 5px; }
-  .explore-section { padding: 30px 22px 26px; }
-  .explore-heading { align-items: start; flex-direction: column; gap: 22px; margin-bottom: 16px; }
+  .intro-scroll { bottom: 22px; }
+  .explore-section { padding: 32px 20px 28px; }
+  .explore-heading { align-items: start; flex-direction: column; gap: 22px; margin-bottom: 24px; }
   .explore-heading h2 { font-size: 22px; }
   .explore-heading p { font-size: 13px; max-width: 24em; }
   .topic-filters button { padding: 7px 20px; }
-  .topic-row { grid-template-columns: 1fr 20px; gap: 8px 12px; padding: 16px 8px; margin-inline: -8px; }
-  .topic-title { display: flex; font-size: 18px; gap: 12px; }
-  .topic-en { display: inline; font-size: 12px; margin: 0; }
-  .topic-description { grid-row: 2; font-size: 13px; }
-  .topic-arrow { grid-column: 2; grid-row: 1 / 3; width: 18px; }
+  .topic-list { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .topic-row { min-height: 192px; padding: 24px; }
+  .topic-title { font-size: 20px; gap: 6px 12px; }
+  .topic-description { font-size: 15px; }
+  .topic-arrow { bottom: 24px; right: 24px; }
   .collection-note { font-size: 12px; margin-top: 20px; }
   .home-footer { padding-block: 32px; align-items: start; flex-direction: column; gap: 26px; }
   .home-footer > div { width: 100%; gap: 20px; font-size: 12px; flex-wrap: wrap; }
@@ -180,5 +182,4 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--vp-c-brand-1); 
 @media (max-width: 767px) {
   .intro-description { font-size: 16px; }
   .topic-en, .collection-note, .home-footer > div { font-size: 13px; }
-  .intro-main { padding-bottom: 48px; }
 }
