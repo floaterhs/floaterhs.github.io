@@ -4,6 +4,8 @@
 
 网站包含个人首页与文档区。文档分为个人（深度思考、日常生活）和技能（编程开发、音乐制作、拍摄剪辑），使用 VitePress 生成静态页面。
 
+访问网站：[floaterhs.github.io](https://floaterhs.github.io/) · [文档](https://floaterhs.github.io/docs/)
+
 ## 本地运行
 
 在项目根目录执行：
@@ -24,6 +26,8 @@ npm run preview
 
 构建结果位于 `site/.vitepress/dist`。发布前可通过预览检查首页、文档链接、搜索及手机端布局。
 
+重新构建后，请停止并重新运行 `npm run preview`，让预览服务加载新的资源。日常编辑建议使用带自动更新的 `npm run dev`。
+
 ## 修改内容
 
 | 内容 | 位置 |
@@ -34,6 +38,7 @@ npm run preview
 | 技能栏目 | `site/docs/skills/` |
 | 网站标题、导航、侧栏、搜索 | `site/.vitepress/config.ts` |
 | 自定义主题与样式 | `site/.vitepress/theme/` |
+| 首页头像 | `site/public/avatar.png` |
 
 现有栏目尚未发布文章。添加真实内容后，请同步修改对应栏目中的空状态说明。
 
@@ -66,15 +71,9 @@ description: 文章的一句话介绍。
 
 ## GitHub Pages 部署
 
-目标仓库为公开的 `floaterhs/floaterhs.github.io`，目标访问地址为 <https://floaterhs.github.io/>。目标地址不代表当前已经完成上线。
+网站已部署到 <https://floaterhs.github.io/>，公开仓库为 [floaterhs/floaterhs.github.io](https://github.com/floaterhs/floaterhs.github.io)。
 
-仓库创建并上传代码后：
-
-1. 打开仓库的 **Settings → Pages**。
-2. 将 **Build and deployment → Source** 设为 **GitHub Actions**。
-3. 确认默认分支为 `main`，且 `.github/workflows/` 中的网站部署工作流已提交。
-4. 推送到 `main` 后，工作流会安装依赖、构建网站并发布构建产物。
-5. 在 **Actions** 中确认部署成功，再访问正式地址检查页面。
+仓库的 **Settings → Pages → Source** 已设为 **GitHub Actions**。默认分支为 `main`，部署工作流位于 `.github/workflows/deploy.yml`。每次推送网站修改后，工作流会安装依赖、构建网站并发布构建产物；可在 [Actions](https://github.com/floaterhs/floaterhs.github.io/actions) 查看部署结果。
 
 之后更新文章或样式并推送到 `main`，即可由 GitHub Actions 自动重新部署。
 
