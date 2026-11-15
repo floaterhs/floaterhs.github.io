@@ -1,0 +1,8 @@
+node_modules/
+.npm-cache/
+site/.vitepress/cache/
+site/.vitepress/dist/
+.taste-skill/
+.qa/
+.tools/
+*.log
